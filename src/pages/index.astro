@@ -1,255 +1,402 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
 
-const skills = {
-  language: ['Java', 'Go', 'Python'],
-  backend: ['Spring Boot', 'Spring Cloud', 'Gin', 'MyBatis'],
-  infrastructure: ['MySQL', 'Redis', 'Kafka', 'Docker', 'Kubernetes'],
-  other: ['分布式系统', '微服务', '系统设计', '性能优化']
-};
+interface Props {
+  title: string;
+}
 
-const projects = [
-  {
-    title: '技术面试知识库',
-    description: '系统整理的面试必备知识，包括操作系统、计算机网络、数据库、算法等核心内容。',
-    link: 'https://github.com/MalikCheng/CS-Notes',
-    stars: '184k',
-    tech: ['Java', 'LeetCode']
-  },
-  {
-    title: 'Git 学习指南',
-    description: 'Git 版本控制系统入门教程，帮助开发者掌握版本控制的基本操作和最佳实践。',
-    link: 'https://github.com/MalikCheng/learngit',
-    stars: '12',
-    tech: ['Git']
-  },
-  {
-    title: '剑指Offer Java实现',
-    description: '《剑指Offer》（第二版）经典面试题的 Java 语言实现与详解。',
-    link: 'https://github.com/MalikCheng/coding-interviews',
-    stars: '1',
-    tech: ['Java', '算法']
-  },
-  {
-    title: '个人博客',
-    description: '基于 Vue.js 搭建的个人技术博客，分享技术文章和学习心得。',
-    link: 'https://github.com/MalikCheng/myblog',
-    stars: '-',
-    tech: ['Vue.js']
-  }
-];
-
-const stats = [
-  { label: 'Stars', value: '184k+' },
-  { label: 'Projects', value: '28' },
-  { label: 'Followers', value: '7' }
-];
+const { title } = Astro.props;
 ---
 
-<Layout title="Malik Cheng - Java & Go Backend Developer">
-  <!-- Background gradient -->
-  <div class="fixed inset-0 -z-10">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 bg-slate-950/80 backdrop-blur-md z-50 border-b border-slate-800/50">
-    <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-lg font-mono font-bold text-blue-400">
-        <span class="text-slate-500">~/</span>malik
-      </a>
-      <div class="flex gap-8 text-sm font-mono">
-        <a href="#about" class="hover:text-blue-400 transition-colors">./about</a>
-        <a href="#skills" class="hover:text-blue-400 transition-colors">./skills</a>
-        <a href="#projects" class="hover:text-blue-400 transition-colors">./projects</a>
-        <a href="#contact" class="hover:text-blue-400 transition-colors">./contact</a>
-      </div>
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Malik Cheng - Java & Go 后端开发工程师 @ 百度" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-950 text-slate-300 antialiased selection:bg-blue-500/30">
+    <!-- Animated background grid -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center pt-20">
-    <div class="max-w-4xl mx-auto px-6 w-full">
-      <div class="mb-6">
-        <span class="font-mono text-emerald-400 text-sm">$ whoami</span>
-      </div>
-      <h1 class="text-5xl md:text-6xl font-bold text-slate-100 mb-4 tracking-tight">
-        Malik Cheng
-      </h1>
-      <p class="text-2xl text-slate-400 mb-6 font-mono">
-        <span class="text-blue-400">&gt;</span> Java & Go Backend Developer @ 百度
-      </p>
-      <p class="text-lg text-slate-500 mb-8 max-w-2xl leading-relaxed">
-        专注于分布式系统架构设计，热爱开源。坚信代码改变世界，持续在技术道路上前行。
-      </p>
-      
-      <!-- Stats -->
-      <div class="flex gap-8 mb-10">
-        {stats.map((stat) => (
-          <div class="text-center">
-            <div class="text-2xl font-bold text-slate-200">{stat.value}</div>
-            <div class="text-xs font-mono text-slate-500 uppercase tracking-wider">{stat.label}</div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+      <div class="max-w-5xl mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a href="#" class="group flex items-center gap-2 text-lg font-mono font-bold">
+            <span class="text-slate-600 group-hover:text-blue-400 transition-colors">~/</span>
+            <span class="text-slate-200 group-hover:text-white transition-colors">malik</span>
+            <span class="text-blue-500 animate-pulse">_</span>
+          </a>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="nav-link">./about</a>
+            <a href="#skills" class="nav-link">./skills</a>
+            <a href="#projects" class="nav-link">./projects</a>
+            <a href="#contact" class="nav-link">./contact</a>
           </div>
-        ))}
+          <!-- Mobile menu button -->
+          <button class="md:hidden p-2 text-slate-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </div>
+    </nav>
 
-      <div class="flex gap-4">
-        <a href="#projects" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-          View Projects
-        </a>
-        <a href="#contact" class="px-6 py-3 border border-slate-700 hover:border-slate-600 text-slate-300 rounded-lg font-medium transition-colors">
-          Get in Touch
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Hero -->
+    <section class="min-h-screen flex items-center pt-20">
+      <div class="max-w-5xl mx-auto px-6 w-full">
+        <div class="mb-6 flex items-center gap-2">
+          <span class="font-mono text-emerald-400 text-sm flex items-center gap-2">
+            <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+            Available for hire
+          </span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
+          Malik Cheng
+        </h1>
+        <p class="text-xl md:text-2xl font-mono text-slate-400 mb-6">
+          <span class="text-blue-400">❯</span> Java & Go Backend Developer @ 百度
+        </p>
+        <p class="text-lg text-slate-500 mb-10 max-w-2xl leading-relaxed">
+          专注于分布式系统架构设计，深耕高并发服务开发。热爱开源，相信代码改变世界。
+        </p>
+        
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-8 mb-12">
+          {[
+            { label: 'GitHub Stars', value: '184k+', color: 'yellow' },
+            { label: 'Repositories', value: '28', color: 'blue' },
+            { label: 'Followers', value: '7', color: 'emerald' }
+          ].map((stat) => (
+            <div class="stat-card p-4 rounded-lg border border-white/5 bg-white/5">
+              <div class={`text-2xl font-bold text-${stat.color}-400`}>{stat.value}</div>
+              <div class="text-xs font-mono text-slate-500 uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </div>
 
-  <!-- About -->
-  <section id="about" class="py-24 border-t border-slate-800/50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="mb-8">
-        <span class="font-mono text-blue-400 text-sm">$ cat ./ABOUT.md</span>
+        <div class="flex flex-wrap gap-4">
+          <a href="#projects" class="btn-primary">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            View Projects
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Get in Touch
+          </a>
+        </div>
       </div>
-      <h2 class="text-3xl font-bold text-slate-100 mb-8">About Me</h2>
-      <div class="prose prose-invert prose-slate max-w-none">
-        <p class="text-slate-400 mb-6 leading-relaxed">
-          在百度从事后端开发工作，深耕 <span class="text-emerald-400">Java</span> 与 <span class="text-emerald-400">Go</span> 技术栈。
-          专注于高并发分布式系统的设计与实现，参与过多个日均亿级请求量的核心服务开发。
-        </p>
-        <p class="text-slate-400 mb-6 leading-relaxed">
-          作为技术面试知识库的开源作者，我希望帮助更多开发者系统性地准备技术面试，
-          分享计算机基础知识、算法题解和面试经验。目前该项目已收获 <span class="text-yellow-400">184k+</span> Stars。
-        </p>
-        <p class="text-slate-400 leading-relaxed">
-          工作之余，我喜欢研究新技术，探索底层原理，为开源项目贡献代码。
-          相信持续学习和分享是技术人成长的最佳路径。
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-24 border-t border-slate-800/50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="mb-8">
-        <span class="font-mono text-blue-400 text-sm">$ ls ./skills/</span>
-      </div>
-      <h2 class="text-3xl font-bold text-slate-100 mb-8">Tech Stack</h2>
-      
-      <div class="space-y-6">
-        {Object.entries(skills).map(([category, items]) => (
-          <div>
-            <h3 class="text-sm font-mono text-slate-500 uppercase tracking-wider mb-3 capitalize">
-              {category}
+    <!-- About -->
+    <section id="about" class="py-24 relative">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-blue-400 font-mono">$</span>
+          <span class="text-slate-500 font-mono">cat ./ABOUT.md</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">About Me</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div class="space-y-6 text-slate-400 leading-relaxed">
+            <p>
+              在<span class="text-emerald-400">百度</span>从事后端开发工作，深耕 
+              <span class="text-blue-400 font-mono bg-blue-500/10 px-2 py-0.5 rounded">Java</span> 与 
+              <span class="text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">Go</span> 技术栈。
+              专注于<span class="text-slate-200">高并发分布式系统</span>的设计与实现。
+            </p>
+            <p>
+              作为技术面试知识库的开源作者，我希望帮助更多开发者系统性地准备技术面试，
+              分享计算机基础知识、算法题解和面试经验。
+            </p>
+            <p>
+              工作之余，喜欢研究新技术，探索底层原理，为开源项目贡献代码。
+              相信持续学习和分享是技术人成长的最佳路径。
+            </p>
+          </div>
+          
+          <!-- Work experience card -->
+          <div class="p-6 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
+            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Work Experience
             </h3>
-            <div class="flex flex-wrap gap-2">
-              {items.map((skill) => (
-                <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded text-sm text-slate-300 hover:border-blue-500/50 hover:text-blue-400 transition-colors">
-                  {skill}
-                </span>
-              ))}
+            <div class="space-y-4">
+              <div class="flex gap-4">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <span class="text-2xl">🌐</span>
+                </div>
+                <div>
+                  <div class="text-white font-medium">百度</div>
+                  <div class="text-sm text-slate-500">Java & Go Backend Developer</div>
+                  <div class="text-xs text-slate-600 mt-1">2023 - Present</div>
+                </div>
+              </div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects" class="py-24 border-t border-slate-800/50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="mb-8">
-        <span class="font-mono text-blue-400 text-sm">$ find ./projects -name "*.java" -o -name "*.go"</span>
-      </div>
-      <h2 class="text-3xl font-bold text-slate-100 mb-8">Featured Projects</h2>
-      
-      <div class="grid md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <a 
-            href={project.link}
-            target="_blank"
-            class="group block p-6 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-slate-700 transition-all hover:bg-slate-900"
-          >
-            <div class="flex justify-between items-start mb-3">
-              <h3 class="text-lg font-semibold text-slate-200 group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              {project.stars !== '-' && (
-                <span class="flex items-center gap-1 text-sm text-slate-500">
-                  <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  {project.stars}
-                </span>
-              )}
+    <!-- Skills -->
+    <section id="skills" class="py-24 relative">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-blue-400 font-mono">$</span>
+          <span class="text-slate-500 font-mono">ls ./skills/</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Tech Stack</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { title: 'Languages', icon: '💻', skills: ['Java', 'Go', 'Python'], color: 'blue' },
+            { title: 'Backend', icon: '⚙️', skills: ['Spring Boot', 'Spring Cloud', 'Gin', 'MyBatis'], color: 'emerald' },
+            { title: 'Infrastructure', icon: '🗄️', skills: ['MySQL', 'Redis', 'Kafka', 'Docker'], color: 'purple' },
+            { title: 'Other', icon: '🚀', skills: ['分布式系统', '微服务', '系统设计', '性能优化'], color: 'orange' }
+          ].map((category) => (
+            <div class="skill-card p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group">
+              <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">{category.icon}</div>
+              <h3 class="text-sm font-mono text-slate-500 uppercase tracking-wider mb-3">{category.title}</h3>
+              <div class="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
             </div>
-            <p class="text-slate-400 text-sm mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <span class="text-xs font-mono text-slate-500">#{t}</span>
-              ))}
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24 relative">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-blue-400 font-mono">$</span>
+          <span class="text-slate-500 font-mono">find ./projects -type f -name "*.java" -o -name "*.go"</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Featured Projects</h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          {[
+            { 
+              title: '技术面试知识库', 
+              description: '系统整理的面试必备知识，包括操作系统、计算机网络、数据库、算法等核心内容。',
+              link: 'https://github.com/MalikCheng/CS-Notes',
+              stars: '184k',
+              tech: ['Java', 'LeetCode', '系统设计'],
+              gradient: 'from-blue-500/20 to-emerald-500/20'
+            },
+            { 
+              title: 'Git 学习指南', 
+              description: 'Git 版本控制系统入门教程，帮助开发者掌握版本控制的基本操作和最佳实践。',
+              link: 'https://github.com/MalikCheng/learngit',
+              stars: '12',
+              tech: ['Git', '版本控制'],
+              gradient: 'from-orange-500/20 to-red-500/20'
+            },
+            { 
+              title: '剑指Offer Java实现', 
+              description: '《剑指Offer》（第二版）经典面试题的 Java 语言实现与详解。',
+              link: 'https://github.com/MalikCheng/coding-interviews',
+              stars: '1',
+              tech: ['Java', '算法', '面试'],
+              gradient: 'from-purple-500/20 to-pink-500/20'
+            },
+            { 
+              title: '个人博客', 
+              description: '基于 Vue.js 搭建的个人技术博客，分享技术文章和学习心得。',
+              link: 'https://github.com/MalikCheng/myblog',
+              stars: '-',
+              tech: ['Vue.js', '前端'],
+              gradient: 'from-green-500/20 to-teal-500/20'
+            }
+          ].map((project) => (
+            <a 
+              href={project.link}
+              target="_blank"
+              class="project-card group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br hover:border-white/20 transition-all"
+            >
+              <div class={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50`}></div>
+              <div class="relative p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  {project.stars !== '-' && (
+                    <span class="flex items-center gap-1 text-sm text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      {project.stars}
+                    </span>
+                  )}
+                </div>
+                <p class="text-slate-400 text-sm mb-4">{project.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span class="text-xs font-mono text-slate-500 bg-white/5 px-2 py-1 rounded">#{t}</span>
+                  ))}
+                </div>
+                <div class="absolute bottom-4 right-4 text-slate-600 group-hover:text-blue-400 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 relative">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-blue-400 font-mono">$</span>
+          <span class="text-slate-500 font-mono">mail -to "contact@malik.dev"</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Get in Touch</h2>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <p class="text-slate-400 text-lg leading-relaxed">
+            无论是有趣的项目合作、技术交流，还是只是想聊聊代码，都欢迎联系我。
+            我会尽快回复每一条消息。
+          </p>
+          <div class="flex gap-4 items-start">
+            <div class="flex flex-col gap-2 text-sm text-slate-500">
+              <span class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                Response within 24h
+              </span>
+              <span class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+                Open to opportunities
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid sm:grid-cols-3 gap-4">
+          <a 
+            href="https://github.com/MalikCheng" 
+            target="_blank"
+            class="contact-card group"
+          >
+            <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-white group-hover:text-blue-400 transition-colors">GitHub</div>
+              <div class="text-sm text-slate-500">@MalikCheng</div>
             </div>
           </a>
-        ))}
+          <a 
+            href="https://x.com/cheng_mali59438" 
+            target="_blank"
+            class="contact-card group"
+          >
+            <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center group-hover:bg-slate-700 transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-white group-hover:text-blue-400 transition-colors">X / Twitter</div>
+              <div class="text-sm text-slate-500">@cheng_mali59438</div>
+            </div>
+          </a>
+          <a 
+            href="mailto:malik@example.com"
+            class="contact-card group"
+          >
+            <div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-white group-hover:text-blue-400 transition-colors">Email</div>
+              <div class="text-sm text-slate-500">malik@example.com</div>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-24 border-t border-slate-800/50">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="mb-8">
-        <span class="font-mono text-blue-400 text-sm">$ mail -to "contact"</span>
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="font-mono text-slate-600 text-sm">
+            <span class="text-slate-700">$</span> echo "Thanks for visiting!"
+          </p>
+          <p class="text-slate-500 text-sm">
+            © 2026 Malik Cheng. Made with <span class="text-red-400">❤</span> and <span class="text-amber-400">☕</span>
+          </p>
+        </div>
       </div>
-      <h2 class="text-3xl font-bold text-slate-100 mb-8">Get in Touch</h2>
-      <p class="text-slate-400 mb-8 max-w-2xl">
-        无论是有趣的项目合作、技术交流，还是只是想聊聊代码，都欢迎联系我。
-      </p>
+    </footer>
+
+    <style>
+      .nav-link {
+        @apply text-sm font-mono text-slate-400 hover:text-blue-400 transition-colors relative;
+      }
       
-      <div class="flex flex-col gap-4">
-        <a 
-          href="https://github.com/MalikCheng" 
-          target="_blank"
-          class="flex items-center gap-4 text-slate-400 hover:text-blue-400 transition-colors p-4 bg-slate-900/30 rounded-lg border border-slate-800/50 hover:border-slate-700"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          <span class="font-mono">github.com/MalikCheng</span>
-          <span class="text-slate-600 text-sm ml-auto">View Profile →</span>
-        </a>
-        <a 
-          href="https://x.com/cheng_mali59438" 
-          target="_blank"
-          class="flex items-center gap-4 text-slate-400 hover:text-blue-400 transition-colors p-4 bg-slate-900/30 rounded-lg border border-slate-800/50 hover:border-slate-700"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-          <span class="font-mono">@cheng_mali59438</span>
-          <span class="text-slate-600 text-sm ml-auto">Follow Me →</span>
-        </a>
-        <a 
-          href="mailto:malik@example.com"
-          class="flex items-center gap-4 text-slate-400 hover:text-blue-400 transition-colors p-4 bg-slate-900/30 rounded-lg border border-slate-800/50 hover:border-slate-700"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span class="font-mono">malik@example.com</span>
-          <span class="text-slate-600 text-sm ml-auto">Send Mail →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-8 text-center text-slate-600 text-sm border-t border-slate-800/50">
-    <p class="font-mono">
-      <span class="text-slate-700">$ echo "Thanks for visiting!"</span>
-      <br />
-      © 2026 Malik Cheng. Made with ❤️ and ☕
-    </p>
-  </footer>
-</Layout>
+      .nav-link::after {
+        content: '';
+        @apply absolute left-0 bottom-0 w-0 h-0.5 bg-blue-400 transition-all duration-300;
+      }
+      
+      .nav-link:hover::after {
+        @apply w-full;
+      }
+      
+      .btn-primary {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25;
+      }
+      
+      .btn-secondary {
+        @apply inline-flex items-center gap-2 px-6 py-3 border border-slate-700 hover:border-slate-600 text-slate-300 rounded-lg font-medium transition-all;
+      }
+      
+      .skill-tag {
+        @apply px-2.5 py-1 bg-white/5 text-slate-400 text-xs rounded-md border border-white/5 hover:border-blue-500/30 hover:text-blue-400 transition-colors cursor-default;
+      }
+      
+      .stat-card {
+        @apply bg-white/5 border border-white/10 hover:border-white/20 transition-all;
+      }
+      
+      .skill-card {
+        @apply bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all;
+      }
+      
+      .contact-card {
+        @apply flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 hover:bg-white/10 transition-all;
+      }
+      
+      .project-card {
+        @apply bg-white/5;
+      }
+    </style>
+  </body>
+</html>
