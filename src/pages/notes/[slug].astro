@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GiscusComments from '../../components/GiscusComments.astro';
+import { notes } from '../../data/notes';
+
+export function getStaticPaths() {
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const relatedNotes = notes.filter((item) => item.slug !== note.slug).slice(0, 2);
+---
+
+<Layout title={`${note.title} - Malik Cheng`}>
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="Malik Cheng home">
+      <span class="brand-mark">M</span>
+      <span>Malik Cheng</span>
+    </a>
+    <nav class="nav" aria-label="Article navigation">
+      <a href="/#notes">笔记</a>
+      <a href="/#projects">项目</a>
+      <a href="/#contact">联系</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="article-shell">
+      <header class="article-hero">
+        <a class="back-link" href="/#notes">返回目录</a>
+        <p class="eyebrow">{note.meta} · {note.date}</p>
+        <h1>{note.title}</h1>
+        <p class="article-lead">{note.lead}</p>
+      </header>
+
+      <div class="article-grid">
+        <aside class="article-aside" aria-label="Article metadata">
+          <div>
+            <span>栏目</span>
+            <strong>{note.meta.split('/')[0].trim()}</strong>
+          </div>
+          <div>
+            <span>阅读时间</span>
+            <strong>{note.meta.split('/')[1].trim()}</strong>
+          </div>
+          <div>
+            <span>风格</span>
+            <strong>Engineering Journal</strong>
+          </div>
+        </aside>
+
+        <div class="article-body">
+          {note.sections.map((section) => (
+            <section>
+              <h2>{section.heading}</h2>
+              {section.body.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))}
+        </div>
+      </div>
+    </article>
+
+    <section
+      class="section comments-section"
+      aria-labelledby="comments-title"
+    >
+      <div class="comments-heading">
+        <div>
+          <p class="section-kicker">Comments</p>
+          <h2 id="comments-title">读者批注</h2>
+        </div>
+        <span class="comments-count">GitHub Discussions</span>
+      </div>
+
+      <GiscusComments />
+    </section>
+
+    <section class="section related-section">
+      <div class="section-heading">
+        <p class="section-kicker">Next</p>
+        <h2>继续阅读</h2>
+      </div>
+      <div class="project-grid">
+        {relatedNotes.map((item) => (
+          <a class="project-card" href={`/notes/${item.slug}/`}>
+            <div class="project-card-head">
+              <h3>{item.title}</h3>
+              <span>{item.meta.split('/')[0].trim()}</span>
+            </div>
+            <p>{item.summary}</p>
+            <div class="tag-row">
+              <span>{item.meta.split('/')[1].trim()}</span>
+              <span>{item.date}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

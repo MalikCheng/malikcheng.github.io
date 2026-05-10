@@ -24,6 +24,22 @@ npm run build
 npm run preview
 ```
 
+## Giscus Comments
+
+Article comments use [Giscus](https://giscus.app/zh-CN), backed by GitHub Discussions.
+
+1. Enable Discussions in the GitHub repository.
+2. Install the Giscus GitHub App for the repository.
+3. Open https://giscus.app/zh-CN and generate the config.
+4. Copy `.env.example` to `.env` and fill:
+
+```bash
+PUBLIC_GISCUS_REPO=MalikCheng/malikcheng.github.io
+PUBLIC_GISCUS_REPO_ID=R_kgDORFAkKQ
+PUBLIC_GISCUS_CATEGORY=Announcements
+PUBLIC_GISCUS_CATEGORY_ID=DIC_kwDORFAkKc4C8uZ-
+```
+
 ## Deployment to GitHub Pages
 
 1. Create repository named `malikcheng.github.io`

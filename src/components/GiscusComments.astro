@@ -1,0 +1,50 @@
+---
+interface Props {
+  term?: string;
+}
+
+const { term } = Astro.props;
+
+const config = {
+  repo: import.meta.env.PUBLIC_GISCUS_REPO || 'MalikCheng/malikcheng.github.io',
+  repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID || 'R_kgDORFAkKQ',
+  category: import.meta.env.PUBLIC_GISCUS_CATEGORY || 'Announcements',
+  categoryId: import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || 'DIC_kwDORFAkKc4C8uZ-',
+};
+
+const isConfigured = Boolean(config.repo && config.repoId && config.category && config.categoryId);
+---
+
+{
+  isConfigured ? (
+    <div class="giscus-frame">
+      <script
+        src="https://giscus.app/client.js"
+        data-repo={config.repo}
+        data-repo-id={config.repoId}
+        data-category={config.category}
+        data-category-id={config.categoryId}
+        data-mapping="pathname"
+        data-term={term}
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async
+      />
+    </div>
+  ) : (
+    <div class="giscus-setup">
+      <strong>Giscus 还需要 GitHub Discussions 配置。</strong>
+      <p>
+        启用仓库 Discussions，安装 Giscus GitHub App，然后把 giscus.app 生成的 repoId 和 categoryId 写进
+        <code>.env</code>。配置完成后这里会自动变成云端评论区。
+      </p>
+      <a href="https://giscus.app/zh-CN" target="_blank" rel="noreferrer">打开 Giscus 配置页</a>
+    </div>
+  )
+}
