@@ -553,6 +553,30 @@ h2 {
   line-height: 1.7;
 }
 
+.article-photo {
+  margin: 0 0 clamp(34px, 5vw, 58px);
+  border: 1px solid var(--ink);
+  background: var(--white);
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--gold) 56%, transparent);
+}
+
+.article-photo img {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  height: auto;
+  object-fit: contain;
+}
+
+.article-photo figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: ui-sans-serif, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .article-grid {
   display: grid;
   grid-template-columns: 240px minmax(0, 760px);

@@ -53,13 +53,21 @@ const relatedNotes = notes.filter((item) => item.slug !== note.slug).slice(0, 2)
         </aside>
 
         <div class="article-body">
-          {note.sections.map((section) => (
-            <section>
-              <h2>{section.heading}</h2>
-              {section.body.map((paragraph) => (
-                <p>{paragraph}</p>
-              ))}
-            </section>
+          {note.sections.map((section, index) => (
+            <>
+              <section>
+                <h2>{section.heading}</h2>
+                {section.body.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </section>
+              {'images' in note && note.images?.[index] && (
+                <figure class="article-photo">
+                  <img src={note.images[index].src} alt={note.images[index].alt} loading="lazy" decoding="async" />
+                  <figcaption>{note.images[index].caption}</figcaption>
+                </figure>
+              )}
+            </>
           ))}
         </div>
       </div>
