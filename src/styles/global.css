@@ -651,7 +651,6 @@ h2 {
   font-weight: 800;
 }
 
-.giscus-frame,
 .giscus-setup {
   max-width: 760px;
   padding: clamp(18px, 4vw, 28px);
@@ -660,6 +659,16 @@ h2 {
     linear-gradient(90deg, rgba(49, 95, 82, 0.08) 1px, transparent 1px) 0 0 / 28px 28px,
     var(--white);
   box-shadow: 8px 8px 0 color-mix(in srgb, var(--gold) 52%, transparent);
+}
+
+.giscus-frame {
+  max-width: 860px;
+  overflow: visible;
+}
+
+.giscus-frame iframe {
+  display: block;
+  width: 100%;
 }
 
 .giscus-setup strong {
